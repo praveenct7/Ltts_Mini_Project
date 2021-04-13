@@ -8,11 +8,11 @@
  *  CheckAlgo is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ *  (at your optionion) any later version.
  *
  *  CheckAlgo is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURpositionE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
@@ -30,9 +30,9 @@
 
 int main(int argc, char *argv[])
 {
-  int  pos=0, val = 0, outputfile = 0, len, i;
-  char fname[30], str[60],num[30],opt[30];
-  char outstr[200], ch;
+  int  position=0, value = 0, outfile = 0, len, i;
+  char filename[30], str[60],number[30],option[30];
+  char outputstring[200], ch;
   
   FILE *ofile, *ifile; //read and write file handle
   
@@ -41,332 +41,332 @@ int main(int argc, char *argv[])
   { usage(); return 1; }
   
   //Checks whether the -o option has been supplied
-  if(pos = checkArg("-o", argc, argv))
+  if(position = checkArg("-o", argc, argv))
   { 
-    ofile = fopen(argv[pos+1],"w");
+    ofile = fopen(argv[position+1],"w");
     if(ofile==NULL)
      printf("\nUnable to open file.\n");
     else
-     outputfile=1;
-    pos = 0;
+     outfile=1;
+    position = 0;
   }
   
  
   //Check if the input is to be taken from a file
-  if(pos = checkArg("-i", argc, argv))
+  if(position = checkArg("-i", argc, argv))
    { 
-     strcpy(fname, argv[pos+1]);
+     strcpy(filename, argv[position+1]);
      
-     if( (ifile = fopen(fname,"r")) == NULL)
+     if( (ifile = fopen(filename,"r")) == NULL)
       { printf("\nUnable to open file.\n"); return 2; }
      
      
      while(!feof(ifile))
      {
        fgets(str,30,ifile);        //reads a line from the file
-       pos = extractNum(str,num);  //gets the number from the line read
-       extractOption(str,opt,pos); //gets the option from the line read
+       position = extractnumber(str,number);  //gets the numberber from the line read
+       extractoptionion(str,option,position); //gets the optionion from the line read
       
        //IMEI
-       if(strcmp("imei", opt)==0)
+       if(strcmp("imei", option)==0)
        {
-         if( (val = imei(num)) == VERIFIED )
-          sprintf(outstr,"\n%s (IMEI) - VALID", num);
-         else if(!val)
-          sprintf(outstr,"\n%s (IMEI) - INVALID", num);
-         else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (IMEI): checksum => %d\n",num,val);
+         if( (value = imei(number)) == VERIFIED )
+          sprintf(outputstring,"\n%s (IMEI) - valueID", number);
+         else if(!value)
+          sprintf(outputstring,"\n%s (IMEI) - INvalueID", number);
+         else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (IMEI): checksum => %d\n",number,value);
          else
-          sprintf(outstr,"\n%s (IMEI) - INVALID LENGTH", num);
+          sprintf(outputstring,"\n%s (IMEI) - INvalueID LENGTH", number);
        }
        
        //ISSN
-       else if(strcmp("issn", opt)==0)
+       else if(strcmp("issn", option)==0)
        {
-         if( (val = issn(num)) == VERIFIED )
-          sprintf(outstr,"\n%s (ISSN) - VALID", num);
-         else if(!val)
-          sprintf(outstr,"\n%s (ISSN) - INVALID", num);
-         else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (ISSN): checksum => %d\n",num,val);
+         if( (value = issn(number)) == VERIFIED )
+          sprintf(outputstring,"\n%s (ISSN) - valueID", number);
+         else if(!value)
+          sprintf(outputstring,"\n%s (ISSN) - INvalueID", number);
+         else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (ISSN): checksum => %d\n",number,value);
          else
-          sprintf(outstr,"\n%s (ISSN) - INVALID LENGTH", num);
+          sprintf(outputstring,"\n%s (ISSN) - INvalueID LENGTH", number);
        }
        
        //ISBN-10
-       else if(strcmp("isbn10", opt)==0)
+       else if(strcmp("isbn10", option)==0)
        {
-         if( (val = isbn_10(num)) == VERIFIED )
-          sprintf(outstr,"\n%s (ISBN-10) - VALID", num);
-         else if(!val)
-          sprintf(outstr,"\n%s (ISBN-10) - INVALID", num);
-         else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (ISBN-10): checksum => %d\n",num,val);
+         if( (value = isbn_10(number)) == VERIFIED )
+          sprintf(outputstring,"\n%s (ISBN-10) - valueID", number);
+         else if(!value)
+          sprintf(outputstring,"\n%s (ISBN-10) - INvalueID", number);
+         else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (ISBN-10): checksum => %d\n",number,value);
          else
-          sprintf(outstr,"\n%s (ISBN-10) - INVALID LENGTH", num);
+          sprintf(outputstring,"\n%s (ISBN-10) - INvalueID LENGTH", number);
        }
        
        //ISBN-13
-       else if(strcmp("isbn13", opt)==0)
+       else if(strcmp("isbn13", option)==0)
        {
-         if( (val = isbn_13(num)) == VERIFIED )
-          sprintf(outstr,"\n%s (ISBN-13) - VALID", num);
-         else if(!val)
-          sprintf(outstr,"\n%s (ISBN-13) - INVALID", num);
-         else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (ISBN-13): checksum => %d\n",num,val);
+         if( (value = isbn_13(number)) == VERIFIED )
+          sprintf(outputstring,"\n%s (ISBN-13) - valueID", number);
+         else if(!value)
+          sprintf(outputstring,"\n%s (ISBN-13) - INvalueID", number);
+         else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (ISBN-13): checksum => %d\n",number,value);
          else
-          sprintf(outstr,"\n%s (ISBN-13) - INVALID LENGTH", num);
+          sprintf(outputstring,"\n%s (ISBN-13) - INvalueID LENGTH", number);
        }
        
        //UPC
-       else if(strcmp("upc", opt)==0)
+       else if(strcmp("upc", option)==0)
        {
-         if( (val = upc_a(num)) == VERIFIED )
-          sprintf(outstr,"\n%s (UPC) - VALID", num);
-         else if(!val)
-          sprintf(outstr,"\n%s (UPC) - INVALID", num);
-         else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (UPC): checksum => %d\n",num,val);
+         if( (value = upc_a(number)) == VERIFIED )
+          sprintf(outputstring,"\n%s (UPC) - valueID", number);
+         else if(!value)
+          sprintf(outputstring,"\n%s (UPC) - INvalueID", number);
+         else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (UPC): checksum => %d\n",number,value);
          else
-          sprintf(outstr,"\n%s (UPC) - INVALID LENGTH", num);
+          sprintf(outputstring,"\n%s (UPC) - INvalueID LENGTH", number);
        }
        
        //EAN
-       else if(strcmp("ean", opt)==0)
+       else if(strcmp("ean", option)==0)
        {
-         if( (val = ean(num)) == VERIFIED )
-          sprintf(outstr,"\n%s (EAN) - VALID", num);
-         else if(!val)
-          sprintf(outstr,"\n%s (EAN) - INVALID", num);
-         else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (EAN): checksum => %d\n",num,val);
+         if( (value = ean(number)) == VERIFIED )
+          sprintf(outputstring,"\n%s (EAN) - valueID", number);
+         else if(!value)
+          sprintf(outputstring,"\n%s (EAN) - INvalueID", number);
+         else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (EAN): checksum => %d\n",number,value);
          else
-          sprintf(outstr,"\n%s (EAN) - INVALID LENGTH", num);
+          sprintf(outputstring,"\n%s (EAN) - INvalueID LENGTH", number);
        }
        
        //USPS Money Order
-       else if(strcmp("uspsmo", opt)==0)
+       else if(strcmp("uspsmo", option)==0)
        {
-         if( (val = uspsmo(num)) == VERIFIED )
-          sprintf(outstr,"\n%s (USPS MO) - VALID", num);
-         else if(!val)
-          sprintf(outstr,"\n%s (USPS MO) - INVALID", num);
-         else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (USPC MO): checksum => %d\n",num,val);
+         if( (value = uspsmo(number)) == VERIFIED )
+          sprintf(outputstring,"\n%s (USPS MO) - valueID", number);
+         else if(!value)
+          sprintf(outputstring,"\n%s (USPS MO) - INvalueID", number);
+         else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (USPC MO): checksum => %d\n",number,value);
          else
-          sprintf(outstr,"\n%s (USPS MO) - INVALID LENGTH", num);
+          sprintf(outputstring,"\n%s (USPS MO) - INvalueID LENGTH", number);
        }
        
-       //ROUTING number
-       else if(strcmp("routing", opt)==0)
+       //ROUTING numberber
+       else if(strcmp("routing", option)==0)
        {
-         if( (val = routing(num)) == VERIFIED )
-          sprintf(outstr,"\n%s (ROUTING) - VALID", num);
-         else if(!val)
-          sprintf(outstr,"\n%s (ROUTING) - INVALID", num);
-         else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (ROUTING): checksum => %d\n",num,val);
+         if( (value = routing(number)) == VERIFIED )
+          sprintf(outputstring,"\n%s (ROUTING) - valueID", number);
+         else if(!value)
+          sprintf(outputstring,"\n%s (ROUTING) - INvalueID", number);
+         else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (ROUTING): checksum => %d\n",number,value);
          else
-          sprintf(outstr,"\n%s (ROUTING) - INVALID LENGTH", num);
+          sprintf(outputstring,"\n%s (ROUTING) - INvalueID LENGTH", number);
        }
        
        //BANKD CARD
-       else if(strcmp("bankcrd", opt)==0)
+       else if(strcmp("bankcrd", option)==0)
        {
-         if( (val = ibm_mod10(num)) == VERIFIED )
-          sprintf(outstr,"\n%s (BANK CARD) - VALID", num);
-         else if(!val)
-          sprintf(outstr,"\n%s (BANK CARD) - INVALID", num);
-         else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (BANK CARD): checksum => %d\n",num,val);
+         if( (value = ibm_mod10(number)) == VERIFIED )
+          sprintf(outputstring,"\n%s (BANK CARD) - valueID", number);
+         else if(!value)
+          sprintf(outputstring,"\n%s (BANK CARD) - INvalueID", number);
+         else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (BANK CARD): checksum => %d\n",number,value);
          else
-          sprintf(outstr,"\n%s (BANK CARD) - INVALID LENGTH", num);
+          sprintf(outputstring,"\n%s (BANK CARD) - INvalueID LENGTH", number);
        }
        
       
-       if(outputfile)
-        fprintf(ofile,"%s\n",outstr); //puts the output to the file
+       if(outfile)
+        fprintf(ofile,"%s\n",outputstring); //puts the output to the file
        
-       printf("\n%s",outstr);   
+       printf("\n%s",outputstring);   
        
-       clearArr(str); clearArr(num); clearArr(opt);
-       clearArr(outstr);
+       clearArr(str); clearArr(number); clearArr(option);
+       clearArr(outputstring);
        
-       pos=0;
+       position=0;
      }
     
      fclose(ifile);
      
-     if(outputfile) 
+     if(outfile) 
        fclose(ofile);
     }
      
   //VERSION
-  else if(pos = checkArg("-version", argc, argv))
+  else if(position = checkArg("-version", argc, argv))
    {
-     version(); pos = 0; return 2; 
+     version(); position = 0; return 2; 
    }
   
   
   //IMEI 
-  else if((pos = checkArg("-imei", argc, argv)))
+  else if((position = checkArg("-imei", argc, argv)))
   {
-     if((val = imei(argv[pos+1]))==VERIFIED)
-       sprintf(outstr,"\n%s (IMEI) -  VALID\n", argv[pos+1]);
-     else if(!val)
-       sprintf(outstr,"\n%s (IMEI) - INVALID\n", argv[pos+1]);
-     else if(val>=1 && val <=9)
-       sprintf(outstr,"\n%s (IMEI): checksum => %d\n",argv[pos+1],val);
+     if((value = imei(argv[position+1]))==VERIFIED)
+       sprintf(outputstring,"\n%s (IMEI) -  valueID\n", argv[position+1]);
+     else if(!value)
+       sprintf(outputstring,"\n%s (IMEI) - INvalueID\n", argv[position+1]);
+     else if(value>=1 && value <=9)
+       sprintf(outputstring,"\n%s (IMEI): checksum => %d\n",argv[position+1],value);
     else 
-      sprintf(outstr,"\n%s (IMEI) - INVALID LENGTH\n", argv[pos+1]);
-    if(outputfile)
-     {  fprintf(ofile,"%s\n",outstr);  fclose(ofile); }
-    printf("\n%s",outstr);
+      sprintf(outputstring,"\n%s (IMEI) - INvalueID LENGTH\n", argv[position+1]);
+    if(outfile)
+     {  fprintf(ofile,"%s\n",outputstring);  fclose(ofile); }
+    printf("\n%s",outputstring);
     
   }
   
   //ISSN
-  else if((pos = checkArg("-issn", argc, argv)))
+  else if((position = checkArg("-issn", argc, argv)))
   { 
-     if((val = issn(argv[pos+1]))==VERIFIED)
-       sprintf(outstr,"\n%s (ISSN) -  VALID\n", argv[pos+1]);
-     else if(!val)
-       sprintf(outstr,"\n%s (ISSN) - INVALID\n", argv[pos+1]);
-     else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (ISSN): checksum => %d\n",argv[pos+1],val);
+     if((value = issn(argv[position+1]))==VERIFIED)
+       sprintf(outputstring,"\n%s (ISSN) -  valueID\n", argv[position+1]);
+     else if(!value)
+       sprintf(outputstring,"\n%s (ISSN) - INvalueID\n", argv[position+1]);
+     else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (ISSN): checksum => %d\n",argv[position+1],value);
      else 
-       sprintf(outstr,"\n%s (ISSN) - INVALID LENGTH\n", argv[pos+1]);
-     if(outputfile)
-      {  fprintf(ofile,"%s\n",outstr);  fclose(ofile); }
-     printf("\n%s",outstr);
+       sprintf(outputstring,"\n%s (ISSN) - INvalueID LENGTH\n", argv[position+1]);
+     if(outfile)
+      {  fprintf(ofile,"%s\n",outputstring);  fclose(ofile); }
+     printf("\n%s",outputstring);
    }
    
   //ROUTING
-  else if((pos = checkArg("-routing", argc, argv)))
+  else if((position = checkArg("-routing", argc, argv)))
   { 
-     if((val = routing(argv[pos+1]))==VERIFIED)
-       sprintf(outstr,"\n%s (ROUTING) -  VALID\n", argv[pos+1]);
-     else if(!val)
-       sprintf(outstr,"\n%s (ROUTING) - INVALID\n", argv[pos+1]);
-     else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (ROUTING): checksum => %d\n",argv[pos+1],val);
+     if((value = routing(argv[position+1]))==VERIFIED)
+       sprintf(outputstring,"\n%s (ROUTING) -  valueID\n", argv[position+1]);
+     else if(!value)
+       sprintf(outputstring,"\n%s (ROUTING) - INvalueID\n", argv[position+1]);
+     else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (ROUTING): checksum => %d\n",argv[position+1],value);
      else 
-       sprintf(outstr,"\n%s (ROUTING) - INVALID LENGTH\n", argv[pos+1]);
-     if(outputfile)
-      {  fprintf(ofile,"%s\n",outstr);  fclose(ofile); }
-     printf("\n%s",outstr);
+       sprintf(outputstring,"\n%s (ROUTING) - INvalueID LENGTH\n", argv[position+1]);
+     if(outfile)
+      {  fprintf(ofile,"%s\n",outputstring);  fclose(ofile); }
+     printf("\n%s",outputstring);
   }
   
   
   //ISBN-10
-  else if((pos = checkArg("-isbn10", argc, argv)))
+  else if((position = checkArg("-isbn10", argc, argv)))
   { 
-     if((val = isbn_10(argv[pos+1]))==VERIFIED)
-       sprintf(outstr,"\n%s (ISBN-10) -  VALID\n", argv[pos+1]);
-     else if(!val)
-       sprintf(outstr,"\n%s (ISBN-10) - INVALID\n", argv[pos+1]);
-     else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (ISBN-10): checksum => %d\n",argv[pos+1],val);
+     if((value = isbn_10(argv[position+1]))==VERIFIED)
+       sprintf(outputstring,"\n%s (ISBN-10) -  valueID\n", argv[position+1]);
+     else if(!value)
+       sprintf(outputstring,"\n%s (ISBN-10) - INvalueID\n", argv[position+1]);
+     else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (ISBN-10): checksum => %d\n",argv[position+1],value);
      else 
-       sprintf(outstr,"\n%s (ISBN-10) - INVALID LENGTH\n", argv[pos+1]);
-     if(outputfile)
-      {  fprintf(ofile,"%s\n",outstr);  fclose(ofile); }
-     printf("\n%s",outstr);
+       sprintf(outputstring,"\n%s (ISBN-10) - INvalueID LENGTH\n", argv[position+1]);
+     if(outfile)
+      {  fprintf(ofile,"%s\n",outputstring);  fclose(ofile); }
+     printf("\n%s",outputstring);
   }
   
   //ISBN-13
-  else if((pos = checkArg("-isbn13", argc, argv)))
+  else if((position = checkArg("-isbn13", argc, argv)))
   { 
-     if((val = isbn_13(argv[pos+1]))==VERIFIED)
-       sprintf(outstr,"\n%s (ISBN-13) -  VALID\n", argv[pos+1]);
-     else if(!val)
-       sprintf(outstr,"\n%s (ISBN-13) - INVALID\n", argv[pos+1]);
-     else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (ISBN): checksum => %d\n",argv[pos+1],val);
+     if((value = isbn_13(argv[position+1]))==VERIFIED)
+       sprintf(outputstring,"\n%s (ISBN-13) -  valueID\n", argv[position+1]);
+     else if(!value)
+       sprintf(outputstring,"\n%s (ISBN-13) - INvalueID\n", argv[position+1]);
+     else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (ISBN): checksum => %d\n",argv[position+1],value);
      else 
-       sprintf(outstr,"\n%s (ISBN-13) - INVALID LENGTH\n", argv[pos+1]);
-     if(outputfile)
-      {  fprintf(ofile,"%s\n",outstr);  fclose(ofile); }
-     printf("\n%s",outstr);
+       sprintf(outputstring,"\n%s (ISBN-13) - INvalueID LENGTH\n", argv[position+1]);
+     if(outfile)
+      {  fprintf(ofile,"%s\n",outputstring);  fclose(ofile); }
+     printf("\n%s",outputstring);
   }
   
   
   //UPC
-  else if((pos = checkArg("-upc", argc, argv)))
+  else if((position = checkArg("-upc", argc, argv)))
   { 
-     if((val = upc_a(argv[pos+1]))==VERIFIED)
-       sprintf(outstr,"\n%s (UPC) -  VALID\n", argv[pos+1]);
-     else if(!val)
-       sprintf(outstr,"\n%s (UPC) - INVALID\n", argv[pos+1]);
-     else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (UPC): checksum => %d\n",argv[pos+1],val);
+     if((value = upc_a(argv[position+1]))==VERIFIED)
+       sprintf(outputstring,"\n%s (UPC) -  valueID\n", argv[position+1]);
+     else if(!value)
+       sprintf(outputstring,"\n%s (UPC) - INvalueID\n", argv[position+1]);
+     else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (UPC): checksum => %d\n",argv[position+1],value);
      else 
-       sprintf(outstr,"\n%s (UPC) - INVALID LENGTH\n", argv[pos+1]);
-     if(outputfile)
-      {  fprintf(ofile,"%s\n",outstr);  fclose(ofile); }
-     printf("\n%s",outstr);
+       sprintf(outputstring,"\n%s (UPC) - INvalueID LENGTH\n", argv[position+1]);
+     if(outfile)
+      {  fprintf(ofile,"%s\n",outputstring);  fclose(ofile); }
+     printf("\n%s",outputstring);
   }
   
   //EAN
-  else if((pos = checkArg("-ean", argc, argv)))
+  else if((position = checkArg("-ean", argc, argv)))
   { 
-     if((val = ean(argv[pos+1]))==VERIFIED)
-       sprintf(outstr,"\n%s (EAN) -  VALID\n", argv[pos+1]);
-     else if(!val)
-       sprintf(outstr,"\n%s (EAN) - INVALID\n", argv[pos+1]);
-     else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (EAN): checksum => %d\n",argv[pos+1],val);
+     if((value = ean(argv[position+1]))==VERIFIED)
+       sprintf(outputstring,"\n%s (EAN) -  valueID\n", argv[position+1]);
+     else if(!value)
+       sprintf(outputstring,"\n%s (EAN) - INvalueID\n", argv[position+1]);
+     else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (EAN): checksum => %d\n",argv[position+1],value);
      else 
-       sprintf(outstr,"\n%s (EAN) - INVALID LENGTH\n", argv[pos+1]);
-     if(outputfile)
-      {  fprintf(ofile,"%s\n",outstr);  fclose(ofile); }
-     printf("\n%s",outstr);
+       sprintf(outputstring,"\n%s (EAN) - INvalueID LENGTH\n", argv[position+1]);
+     if(outfile)
+      {  fprintf(ofile,"%s\n",outputstring);  fclose(ofile); }
+     printf("\n%s",outputstring);
   }
   
   
   //USPS Money Order
-  else if((pos = checkArg("-uspsmo", argc, argv)))
+  else if((position = checkArg("-uspsmo", argc, argv)))
   { 
-     if((val = uspsmo(argv[pos+1]))==VERIFIED)
-       sprintf(outstr,"\n%s (USPSMO) -  VALID\n", argv[pos+1]);
-     else if(!val)
-       sprintf(outstr,"\n%s (USPSMO) - INVALID\n", argv[pos+1]);
-     else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (USPSMO): checksum => %d\n",argv[pos+1],val);
+     if((value = uspsmo(argv[position+1]))==VERIFIED)
+       sprintf(outputstring,"\n%s (USPSMO) -  valueID\n", argv[position+1]);
+     else if(!value)
+       sprintf(outputstring,"\n%s (USPSMO) - INvalueID\n", argv[position+1]);
+     else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (USPSMO): checksum => %d\n",argv[position+1],value);
      else 
-       sprintf(outstr,"\n%s (USPSMO) - INVALID LENGTH\n", argv[pos+1]);
-     if(outputfile)
-     {  fprintf(ofile,"%s\n",outstr);  fclose(ofile); }
-     printf("\n%s",outstr);
+       sprintf(outputstring,"\n%s (USPSMO) - INvalueID LENGTH\n", argv[position+1]);
+     if(outfile)
+     {  fprintf(ofile,"%s\n",outputstring);  fclose(ofile); }
+     printf("\n%s",outputstring);
   }
   
   //BANK CARD
-  else if((pos = checkArg("-bankcrd", argc, argv)))
+  else if((position = checkArg("-bankcrd", argc, argv)))
   { 
-     if((val = ibm_mod10(argv[pos+1]))==VERIFIED)
-       sprintf(outstr,"\n%s (BANK CARD) -  VALID\n", argv[pos+1]);
-     else if(!val)
-       sprintf(outstr,"\n%s (BANK CARD) - INVALID\n", argv[pos+1]);
-     else if(val>=1 && val <=9)
-          sprintf(outstr,"\n%s (BANK CARD): checksum => %d\n",argv[pos+1],val);
+     if((value = ibm_mod10(argv[position+1]))==VERIFIED)
+       sprintf(outputstring,"\n%s (BANK CARD) -  valueID\n", argv[position+1]);
+     else if(!value)
+       sprintf(outputstring,"\n%s (BANK CARD) - INvalueID\n", argv[position+1]);
+     else if(value>=1 && value <=9)
+          sprintf(outputstring,"\n%s (BANK CARD): checksum => %d\n",argv[position+1],value);
      else 
-       sprintf(outstr,"\n%s (BANK CARD) - INVALID LENGTH\n", argv[pos+1]);
-     if(outputfile)
-     { fprintf(ofile,"%s\n",outstr);  fclose(ofile); }
-     printf("\n%s",outstr);
+       sprintf(outputstring,"\n%s (BANK CARD) - INvalueID LENGTH\n", argv[position+1]);
+     if(outfile)
+     { fprintf(ofile,"%s\n",outputstring);  fclose(ofile); }
+     printf("\n%s",outputstring);
   }
   
   //-createMod10
-  else if((pos = checkArg("-createNumMod10", argc, argv)))
+  else if((position = checkArg("-createnumberMod10", argc, argv)))
   {    
-       len = strlen(argv[pos+1]);
+       len = strlen(argv[position+1]);
        
-       if(argv[pos+1][len-1]=='*')
-       { createNumMod10(argv[pos+1],num);
-         printf("%s\n",num);
-         if(outputfile)
-         { fprintf(ofile,"\n%s",num); fclose(ofile); }
+       if(argv[position+1][len-1]=='*')
+       { createnumberMod10(argv[position+1],number);
+         printf("%s\n",number);
+         if(outfile)
+         { fprintf(ofile,"\n%s",number); fclose(ofile); }
        }
        
        else
@@ -376,17 +376,17 @@ int main(int argc, char *argv[])
          {
            for(i=0; i<10; i++)
            {
-            clearArr(num);
-            createNumMod10(argv[pos+1],num);
-            printf("\n%s",num);
-            if(outputfile)
-            { fprintf(ofile,"\n%s",num); }
+            clearArr(number);
+            createnumberMod10(argv[position+1],number);
+            printf("\n%s",number);
+            if(outfile)
+            { fprintf(ofile,"\n%s",number); }
            }
            printf("\n\nSee more combinations (Y/N)?\n\n"); 
            ch = getch();
          }while(ch=='y' || ch=='Y');
          
-          if(outputfile)
+          if(outfile)
            fclose(ofile);
        }
    }
