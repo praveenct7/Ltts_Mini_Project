@@ -1,12 +1,14 @@
+CC=g++
 
+CFlags=-c -Wall
 output: main.o checkalgo.o
-	g++ main.o checkalgo.o -o output
+	$(CC) main.o checkalgo.o -o output
 
 main.o: main.c
-	g++ -c main.c
+	$(CC) $(CFlags) main.c
 
 checkalgo.o: checkalgo.c checkalgo.h
-	g++ -c checkalgo.c
+	$(CC) $(CFlags) checkalgo.c
 
 clean:
 	rm *.o output
