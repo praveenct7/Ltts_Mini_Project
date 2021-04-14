@@ -1,24 +1,6 @@
 /*
  *  checkalgo.c - functions for CheckAlgo
- *
- *  Copyright (c) 2012  Shine Jayakumar (shine_hack@yahoo.com)
- *
- *  This file is part of CheckAlgo.
- *
- *  CheckAlgo is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  CheckAlgo is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with CheckAlgo.  If not, see <http://www.gnu.org/licenses/>.
- *
- */
+*/
  
 
 #include <stdio.h>
@@ -194,40 +176,14 @@ void usage(void)
   printf("9781234582345,isbn13\n");
   printf("0718345291,isbn10\n");
   printf("335423492918472,imei\n\n");
-  printf("For any queries or suggestion, please email at shine_hack@yahoo.com.\n\n");
-  
-  
   
 }
 
 //version information
 void version(void)
 {
-  printf("\nCheckAlgo v.1.1\n");
-  printf("\nVersion : 1.1");
-  printf("\nAuthor  : Shine Jayakumar");
-  printf("\nEmail   : shine_hack@yahoo.com");
-  printf("\nLicence : GNU GENERAL PUBLIC LICENSE  - Version 3, 29 June 2007\n\n");
-  printf("Copyright (c) 2012  Shine Jayakumar (shine_hack@yahoo.com)\n\n");
-  
-  printf("CheckAlgo is free software: you can redistribute it and/or modify\n");
-  printf("it under the terms of the GNU General Public License as published by\n");
-  printf("the Free Software Foundation, either version 3 of the License, or\n");
-  printf("(at your option) any later version.\n\n");   
-  printf("CheckAlgo is distributed in the hope that it will be useful,\n");
-  printf("but WITHOUT ANY WARRANTY; without even the implied warranty of\n");
-  printf("MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n");
-  printf("GNU General Public License for more details.\n\n");
-  printf("You should have received a copy of the GNU General Public License\n");
-  printf("along with CheckAlgo.  If not, see <http://www.gnu.org/licenses/>.\n");
+  printf("\nCheckAlgo\n");
 }
-   
-  
-  
-  
-  
-/****************************************************************************/
-
 
 /*****************************************************************************
                             Mod10 algorithm - functions
