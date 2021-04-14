@@ -147,23 +147,24 @@ Hence 6 is the check digit.
 
 ## Who:
 
-**TBD**
+Many products that we use have an identification number that may or may not have a bar-code. Some examples are books, electronics, grocery items, credit cards, money orders, driver’s license, etc.
 
 ## What:
 
-**TBD**
+A check digit is added to the identification number (usually the last digit). This digit is used to verify the identification number for its legitimacy. Check digit is added to the number to detect any errors made while typing the number into the system. The check digit is calculated with an algorithm.
 
 ## When:
 
-**TBD**
+Check digit algorithm is used when we need to validate an identification number such as IMEI, ISSN, ISBN10, ISBN13, UPC, EAN, USPSMO.
 
 ## Where:
 
-**TBD**
+This can be used in banks, Manufacturing companies, customers of various industries.
 
 ## How:
 
-**TBD**
+Some of the most common identification numbers and check digit algorithms involved in the verification of these identification numbers.
+ 
 
 # Detail requirements
 ## High Level Requirements:
