@@ -141,7 +141,7 @@ Example: 8 901526 206056
 Hence 6 is the check digit.
 
 ## SWOT ANALYSIS
-https://imagizer.imageshack.com/img924/7008/GXxQZw.png
+![SWOT Analysis](https://imagizer.imageshack.com/img924/7008/GXxQZw.png)
 
 # 4W&#39;s and 1&#39;H
 
