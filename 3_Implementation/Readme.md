@@ -10,10 +10,8 @@ Folder        | description
 
 
 
-CheckAlgo v.1.1
-
 Checks various identification numbers for its validity.
-Usage: checkalgo [options] number...
+Usage: ./checkall [options] number...
 
 Options:
 -help         Displays this screen.
@@ -33,9 +31,9 @@ Options:
               Ex: 5487934592459432,bankcrd. One entry per line.
 -o            Puts the output into a file.
 
-Example: checkalgo -imei 355340045855879
-         checkalgo -isbn13 9780070635463 -o output.txt
-         checkalgo -i input.txt -o output.txt
+Example: checkall -imei 355340045855879
+         checkall -isbn13 9780070635463 -o output.txt
+         checkall -i input.txt -o output.txt
 
 
 
