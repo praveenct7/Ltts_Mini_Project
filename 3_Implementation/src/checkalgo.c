@@ -14,7 +14,7 @@
 
 //Converts character to integer
 
-int char2int(char ch)
+int charToInt(char ch)
 {
     int val = -1;
     
@@ -37,7 +37,7 @@ int char2int(char ch)
 }
 
 //Converts integer to character
-char int2char(int ch)
+char intToChar(int ch)
 {
      char val = NULLCHAR;
      
@@ -59,29 +59,29 @@ char int2char(int ch)
 }
 
 //Parses the argument list to look for a specific string
-int checkArg(char s[], int noOfArg, char *argstr[])
+int check_arguments(char s[], int noOfArg, char *argstr[])
 {
-  int i=1, pos=0;
+  int i=1, position=0;
   
   for(i=1;i<noOfArg;i++)
   {
    if(strcmp(s,argstr[i])==0)
-     pos = i;
+     position = i;
   }
   
-  return pos;
+  return position;
 }
 
 //extracts the number from the string
-int  extractNum(char str[], char num[])
+int  extract_number(char str[], char num[])
 {
-  int len,i,j;
+  int length,i,j;
   
   i=j=0;
   
-  len = strlen(str);
+  length = strlen(str);
   
-  while(i<len && str[i]!=',')
+  while(i<length && str[i]!=',')
   {
     num[j] = str[i];
     i++; j++;
@@ -93,11 +93,11 @@ int  extractNum(char str[], char num[])
 }
 
 //extracts the option from the string
-void extractOption(char str[], char opt[], int pos)
+void extract_option(char str[], char opt[], int position)
 { 
   int i,j;
   
-  i = pos; j=0;
+  i = position; j=0;
   
   while(i<strlen(str) && (str[i]!='\0') && (str[i]!='\n'))
   {
@@ -107,26 +107,26 @@ void extractOption(char str[], char opt[], int pos)
 }
 
 //clears the array
-void clearArr(char a[])
+void clear_array(char a[])
 {
-  int len=0,i;
+  int length=0,i;
   
-  len = strlen(a);
-  for(i=0; i<len; i++)
+  length = strlen(a);
+  for(i=0; i<length; i++)
    a[i] = '\0';
 }
 
 
 //fills the number with random digits, leaving the last digit
-void completeNumber(char a[])
+void complete_number(char a[])
 {
-    int len,i;
+    int length,i;
   
-    len = strlen(a);
+    length = strlen(a);
   
-    for(i=0; i<len-1; i++)
+    for(i=0; i<length-1; i++)
      { if(a[i] == '*')
-        a[i] = int2char(rand() %9); 
+        a[i] = intToChar(rand() %9); 
      }
 }
 
@@ -134,126 +134,117 @@ void completeNumber(char a[])
 //usage();
 void usage(void)
 {
-  printf("\nCheckAlgo v.1.1");
   printf("\n\nChecks various identification numbers for its validity.");
   printf("\nUsage: checkalgo [options] number...");
   printf("\n\nOptions:\n");
   printf("-help         Displays this screen.\n");
-  printf("-version      Displays the version and license information.\n");
-  printf("-imei         Checks an IMEI number for its validity (15 digits).\n");
-  printf("-issn         Checks an ISSN number for its validity (8 digits).\n");
+  printf("-imei_number         Checks an imei_number number for its validity (15 digits).\n");
+  printf("-serial_number         Checks an serial_number number for its validity (8 digits).\n");
   printf("-bankcrd      Checks a bank card number (Credit, Debit or other bank cards).\n");
-  printf("-routing      Checks a Bank Routing number (9 digits).\n");
+  printf("-rout      Checks a Bank rout number (9 digits).\n");
   printf("-isbn10       Checks an ISBN (10 digits).\n");
   printf("-isbn13       Checks an ISBN (13 digits).\n");
   printf("-upc          Checks a UPC number (12 digits).\n");
   printf("-ean          Checks an EAN number (13 digits).\n");
-  printf("-uspsmo       Checks a USPS money order number (12 digits).\n");
   printf("-createMod10  Generates a valid number verified with mod10 algorithm.\n");
-  printf("-version      Displays the version.\n");
   printf("-i            Reads the input from a file. Input file in Number,Type format.\n");
   printf("              Ex: 5487934592459432,bankcrd. One entry per line.\n");
   printf("-o            Puts the output into a file.\n\n");
-  printf("Example: checkalgo -imei 355340045855879\n");
+  printf("Example: checkalgo -imei_number 355340045855879\n");
   printf("         checkalgo -isbn13 9780070635463 -o output.txt\n");
   printf("         checkalgo -i input.txt -o output.txt\n");
   printf("Press any key to continue..."); getch();
   printf("\n\nGenerating a number verified with mod10 algorithm\n\n");
-  printf("Example : checkalgo -createNumMod10 5497*3922*29*23*\n\n");
+  printf("Example : checkalgo -create_number_mod10 5497*3922*29*23*\n\n");
   printf("\n\nOptions for input file:\n\n");
-  printf("imei    - IMEI (15 digits)\n");
-  printf("issn    - ISSN (8 digits)\n");
+  printf("imei_number    - imei_number (15 digits)\n");
+  printf("serial_number    - serial_number (8 digits)\n");
   printf("upc     - UPC (12 digits)\n");
   printf("ean     - EAN (13 digits)\n");
-  printf("uspsmo  - USPS Money order\n");
+  printf("us_postal  - USPS Money order\n");
   printf("isbn10  - ISBN (10 digits)\n");
   printf("isbn13  - ISBN (13 digits)\n");
-  printf("routing - ROUTING NUMBER\n");
+  printf("rout - rout NUMBER\n");
   printf("bankcrd - BANK CARD\n\n");
   printf("Sample Input file:\n\n");
 
   printf("5434872912349929,bankcrd\n");
   printf("9781234582345,isbn13\n");
   printf("0718345291,isbn10\n");
-  printf("335423492918472,imei\n\n");
+  printf("335423492918472,imei_number\n\n");
   
 }
 
-//version information
-void version(void)
-{
-  printf("\nCheckAlgo\n");
-}
 
 /*****************************************************************************
                             Mod10 algorithm - functions
 ******************************************************************************/
 
-//Generates the checksum
-int ibm_mod10_checksum(char a[])
+//Generates the check_sum
+int mod10Checksum(char a[])
 {
-    int len, mul, i, sum, m10;
+    int length, product, i, add, mod10;
     
-    len = strlen(a);
+    length = strlen(a);
     
-    mul = 2; sum = 0;
+    product = 2; add = 0;
     
-    for(i=len-2; i>=0; i--)
+    for(i=length-2; i>=0; i--)
      { 
-        if( (char2int(a[i])* mul) >= 10 ) 
-         sum +=  ((char2int(a[i])* mul ) / 10) +((char2int(a[i])* mul ) % 10 );
+        if( (charToInt(a[i])* product) >= 10 ) 
+         add +=  ((charToInt(a[i])* product ) / 10) +((charToInt(a[i])* product ) % 10 );
        
-        //if a[i] * mul is less than 10 
+        //if a[i] * product is less than 10 
         else
-         sum += char2int(a[i])* mul;
+         add += charToInt(a[i])* product;
    
-        if(mul==2) mul=1; //switches the value of mul between 2 and 1
-        else mul=2;
+        if(product==2) product=1; //switches the value of product between 2 and 1
+        else product=2;
      }   
      
-    m10 = sum%10;
+    mod10 = add%10;
     
-    if(m10!=0)
-      m10 = 10 - m10;
+    if(mod10!=0)
+      mod10 = 10 - mod10;
     
-    return m10;      
+    return mod10;      
 }
 
 
 
 /* Check the number with mod10 algorithm and returns 1 if
    number is valid */
-int ibm_mod10(char a[])
+int modulus10(char a[])
 {
-   int i, len, mul, sum;
+   int i, length, product, add;
    int chksum;
-   int m10;
+   int mod10;
    
    
-   len = strlen(a); //length of the string passed
+   length = strlen(a); //length of the string passed
  
-   chksum = char2int(a[len-1]); //Last element should be the checksum
+   chksum = charToInt(a[length-1]); //Last element should be the check_sum
  
 
-   mul = 2; sum=0;
+   product = 2; add=0;
    
-   for(i=len-2; i>=0; i--)
+   for(i=length-2; i>=0; i--)
    { 
-    if( (char2int(a[i])* mul) >= 10 )
-     sum +=  ((char2int(a[i])* mul ) / 10) +((char2int(a[i])* mul ) % 10 );
+    if( (charToInt(a[i])* product) >= 10 )
+     add +=  ((charToInt(a[i])* product ) / 10) +((charToInt(a[i])* product ) % 10 );
     
     else
-     sum += char2int(a[i])* mul;
+     add += charToInt(a[i])* product;
    
-    if(mul==2) mul=1;
-    else mul=2;
+    if(product==2) product=1;
+    else product=2;
    }
  
-   m10 = sum%10;
+   mod10 = add%10;
  
-   if(m10) m10 = 10 - m10;
+   if(mod10) mod10 = 10 - mod10;
    
-   if(m10 == chksum)
+   if(mod10 == chksum)
     return VERIFIED;
        
    else
@@ -262,31 +253,31 @@ int ibm_mod10(char a[])
 
 
 //creates a number verified with mod10 algorithm
-void createNumMod10(char a[], char completenum[])
+void create_number_mod10(char a[], char completenum[])
 {
-   int checksum, orgcheck,len;
+   int check_sum, orgcheck,length;
    
    strcpy(completenum, a);
    
-   len = strlen(completenum);
+   length = strlen(completenum);
    
-   if(completenum[len-1] == '*')
-   { completeNumber(completenum);
-     checksum = ibm_mod10_checksum(completenum);
-     completenum[len-1] = int2char(checksum);
+   if(completenum[length-1] == '*')
+   { complete_number(completenum);
+     check_sum = mod10Checksum(completenum);
+     completenum[length-1] = intToChar(check_sum);
    }
    
    else
     {
       do 
       { 
-        clearArr(completenum);
+        clear_array(completenum);
         strcpy(completenum,a);
-        completeNumber(completenum);
-        checksum = ibm_mod10_checksum(completenum);
-        orgcheck = char2int(completenum[len-1]);
-       // printf("\n%s  %d  %d",completenum,checksum,orgcheck);        
-      }while(orgcheck != checksum);
+        complete_number(completenum);
+        check_sum = mod10Checksum(completenum);
+        orgcheck = charToInt(completenum[length-1]);
+       // printf("\n%s  %d  %d",completenum,check_sum,orgcheck);        
+      }while(orgcheck != check_sum);
     }
  }
      
@@ -297,40 +288,40 @@ void createNumMod10(char a[], char completenum[])
     mod9 algorithm
     
     Checks the number with mod9 and returns 1 if true and return 0 if invalid
-    If checksum is not provided and is replaced by *, then the calculated
-    checksum is returned
+    If check_sum is not provided and is replaced by *, then the calculated
+    check_sum is returned
     
     US POSTAL MONEY ORDER number should be 12 digits
     
 **************************************************************************/
 
-int uspsmo(char a[])
+int us_postal(char a[])
 {
-    int len=0, i, sum=0, checksum=0, mod9=0;
+    int length=0, i, add=0, check_sum=0, mod9=0;
     
-    len = strlen(a);
+    length = strlen(a);
     
     
-    if(len!=11)
+    if(length!=11)
      return INVALID;
     
-    if(a[len-1]=='*')
+    if(a[length-1]=='*')
     {
-      for(i=0; i<len-1; i++)
-       sum += char2int(a[i]);
+      for(i=0; i<length-1; i++)
+       add += charToInt(a[i]);
        
-      mod9 = sum % 9;
+      mod9 = add % 9;
       return mod9;
     }
     
-    checksum = char2int(a[len-1]);
+    check_sum = charToInt(a[length-1]);
     
-    for(i=0; i<len-1; i++)
-      sum += char2int(a[i]);
+    for(i=0; i<length-1; i++)
+      add += charToInt(a[i]);
        
-    mod9 = sum % 9;
+    mod9 = add % 9;
       
-    if(mod9 == checksum )
+    if(mod9 == check_sum )
      return VERIFIED;
     else
      return NOTVERIFIED;
@@ -343,95 +334,51 @@ int uspsmo(char a[])
   
   Checks the number and if the checkdigit (the last digit) is not supplied, 
   and is replaced by *, then the checkdigit is calculated and returns the 
-  checksum
+  check_sum
   
   UPC should be of 12 digits
 ***************************************************************************/
-int upc_a(char a[])
+int universal_product_code(char a[])
 {
-    int checksum = 0;
-    int i, len,mul=3,sum=0, m10=0;
+    int check_sum = 0;
+    int i, length,product=3,add=0, mod10=0;
     
-    len = strlen(a);
+    length = strlen(a);
     
      
-     if(len!=12)
+     if(length!=12)
       return INVALID;
       
       
-    if(a[len-1] == '*')
+    if(a[length-1] == '*')
      {
-       for(i=0; i<len-1; i++)
+       for(i=0; i<length-1; i++)
        {
-         sum += char2int(a[i]) * mul;
-         if(mul==3) mul=1;
-         else mul = 3;
+         add += charToInt(a[i]) * product;
+         if(product==3) product=1;
+         else product = 3;
        }
-       m10 = sum%10;
-       m10 = 10 - m10;
-       return m10;
+       mod10 = add%10;
+       mod10 = 10 - mod10;
+       return mod10;
      }                
     
     
     
-    for(i=0; i<len; i++)
+    for(i=0; i<length; i++)
     {
-      sum += char2int(a[i]) * mul;
-      if(mul==3) mul=1;
-      else mul = 3;
+      add += charToInt(a[i]) * product;
+      if(product==3) product=1;
+      else product = 3;
     }
     
-    m10 = sum%10;
+    mod10 = add%10;
     
-    if(m10 == 0)
+    if(mod10 == 0)
      return VERIFIED;
     else
      return NOTVERIFIED;
 }
-
-//checks an ean
-int ean(char a[])
-{
-    int len=0,i=0, sum=0, mul=1, mod10, checksum;
-    
-    len = strlen(a);
-    
-    if(len!=13)
-     return INVALID;
-    
-    if(a[len-1] == '*')
-    {
-      for(i=0; i<len-1; i++)
-      {
-        sum += char2int(a[i]) * mul;
-        if(mul==1) mul = 3;
-        else mul = 1;
-        
-      }
-     mod10 = sum % 10; 
-     mod10 = 10 - mod10;
-     return mod10;
-    }
-    
-    checksum = char2int(a[len-1]);
-    for(i=0; i<len-1; i++)
-      {
-        sum += char2int(a[i]) * mul;
-        if(mul==1) mul = 3;
-        else mul = 1;
-        
-      }
-     mod10 = sum % 10; 
-     mod10 = 10 - mod10;
-     
-     if(mod10 == checksum)
-      return VERIFIED;
-     else
-      return NOTVERIFIED;
-}
-    
-
-    
     
 
 /****************************************************************************/
@@ -440,42 +387,41 @@ int ean(char a[])
                ISBN (International Standard Book Number)
   
   Check the number for validity for a 10 digit ISBN number.
-  If the checksum is not provided in the string (the last digit), and is 
-  replaced by *, then the calculated checksum is retured.
+  If the check_sum is not provided in the string (the last digit), and is 
+  replaced by *, then the calculated check_sum is retured.
   
 ****************************************************************************/
-//ISBN for 10 digits
-int isbn_10(char a[])
+int book_number_10(char a[])
 {
-    int checksum = 0;
-    int i, len,pos=1,sum=0, m11;
+    int check_sum = 0;
+    int i, length,position=1,add=0, mod11;
     
     
     
-    len = strlen(a);
+    length = strlen(a);
     
-    if(len!=10) 
+    if(length!=10) 
      return INVALID;
     
-    if(a[len-1]=='*')
+    if(a[length-1]=='*')
     {
-      for( i=0,pos=1; i<len-1; i++,pos++)
-      sum += char2int(a[i]) * pos;
+      for( i=0,position=1; i<length-1; i++,position++)
+      add += charToInt(a[i]) * position;
     
-      m11 = sum % 11;
+      mod11 = add % 11;
       
-      return m11;
+      return mod11;
     }
                      
     
     
-    checksum = char2int(a[len-1]);
+    check_sum = charToInt(a[length-1]);
     
-    for( i=0,pos=1; i<len-1; i++,pos++)
-     sum += char2int(a[i]) * pos;
+    for( i=0,position=1; i<length-1; i++,position++)
+     add += charToInt(a[i]) * position;
     
-    m11 = sum % 11;
-    if(m11 == checksum)
+    mod11 = add % 11;
+    if(mod11 == check_sum)
      return VERIFIED;
     else
      return NOTVERIFIED;
@@ -483,44 +429,44 @@ int isbn_10(char a[])
 }
 
 //ISBN check algorithm for 13 digit number
-int isbn_13(char a[])
+int book_number_13(char a[])
 {
-    int checksum = 0;
-    int i, len,mul=1,sum=0, m10;
+    int check_sum = 0;
+    int i, length, product=1,add=0, mod10;
     
     
-    len = strlen(a);
+    length = strlen(a);
     
     
-    if(len!=13)
+    if(length!=13)
      return INVALID;
     
-    if(a[len-1]=='*')
+    if(a[length-1]=='*')
     {
-      for(i=0; i<len-1; i++)
+      for(i=0; i<length-1; i++)
       {
-        sum += char2int(a[i]) * mul;
-        if(mul==3) mul=1;
-        else mul = 3;
+        add += charToInt(a[i]) * product;
+        if(product==3) product=1;
+        else product = 3;
       }
     
-       m10 = sum%10;
-       m10 = 10-m10;
-       return m10;
+       mod10 = add%10;
+       mod10 = 10-mod10;
+       return mod10;
     }
     
-    checksum = char2int(a[len-1]);
+    check_sum = charToInt(a[length-1]);
     
-    for(i=0; i<len-1; i++)
+    for(i=0; i<length-1; i++)
     {
-      sum += char2int(a[i]) * mul;
-      if(mul==3) mul=1;
-      else mul = 3;
+      add += charToInt(a[i]) * product;
+      if(product==3) product=1;
+      else product = 3;
     }
     
-    m10 = sum%10;
+    mod10 = add%10;
     
-    if( (10-m10) == checksum)
+    if( (10-mod10) == check_sum)
      return VERIFIED;
     else
      return NOTVERIFIED;
@@ -528,41 +474,41 @@ int isbn_13(char a[])
 /***************************************************************************/
 
 /***************************************************************************
-                         Bank routing number check
+                         Bank rout number check
    
    If the checkdigit is not mentioned in the string passed, this function
-   returns the checksum
+   returns the check_sum
    
 ****************************************************************************/
-int routing(char a[])
+int rout(char a[])
 {
-    int checksum = 0, len=0, sum=0, m10=0;
+    int check_sum = 0, length=0, add=0, mod10=0;
     
-    len = strlen(a);
+    length = strlen(a);
     
-    if(len!=9)
+    if(length!=9)
      return INVALID;
     
-    if(a[len-1] == '*')
+    if(a[length-1] == '*')
     {
-      sum = (7 * ( char2int(a[0]) + char2int(a[3]) + char2int(a[6]) )) + 
-            (3 * ( char2int(a[1]) + char2int(a[4]) + char2int(a[7]) )) +
-            (9 * ( char2int(a[2]) + char2int(a[5]) ));
+      add = (7 * ( charToInt(a[0]) + charToInt(a[3]) + charToInt(a[6]) )) + 
+            (3 * ( charToInt(a[1]) + charToInt(a[4]) + charToInt(a[7]) )) +
+            (9 * ( charToInt(a[2]) + charToInt(a[5]) ));
     
-      m10 = sum % 10;
-      return m10;
+      mod10 = add % 10;
+      return mod10;
     }
 
     
-    checksum = char2int(a[len-1]);
+    check_sum = charToInt(a[length-1]);
     
-    sum = (7 * ( char2int(a[0]) + char2int(a[3]) + char2int(a[6]) )) + 
-          (3 * ( char2int(a[1]) + char2int(a[4]) + char2int(a[7]) )) +
-          (9 * ( char2int(a[2]) + char2int(a[5]) ));
+    add = (7 * ( charToInt(a[0]) + charToInt(a[3]) + charToInt(a[6]) )) + 
+          (3 * ( charToInt(a[1]) + charToInt(a[4]) + charToInt(a[7]) )) +
+          (9 * ( charToInt(a[2]) + charToInt(a[5]) ));
     
-    m10 = sum % 10;
+    mod10 = add % 10;
     
-    if(m10 == checksum)
+    if(mod10 == check_sum)
      return VERIFIED;
     else
      return NOTVERIFIED;
@@ -570,42 +516,42 @@ int routing(char a[])
 /*****************************************************************************/
 
 /***************************************************************************** 
-                 ISSN (International Standard Serial Number)
+                 serial_number (International Standard Serial Number)
    
-   ISSN is an eight digit number
+   serial_number is an eight digit number
    If the checkdigit is not mentioned in the string passed, this function
-   returns the checksum
+   returns the check_sum
 *****************************************************************************/
 
-int issn(char a[])
+int serial_number(char a[])
 {
-   int len=0, m11=0, pos=8, i=0, sum=0, checksum=0;
+   int length=0, mod11=0, position=8, i=0, add=0, check_sum=0;
    
-   len = strlen(a);
+   length = strlen(a);
    
-   if(len!=8)
+   if(length!=8)
     return INVALID;
    
-   if(a[len-1]=='*')
+   if(a[length-1]=='*')
    {
-     for(i=0,pos=8; i<len-1; i++,pos--)
-      sum += char2int(a[i]) * pos;
+     for(i=0,position=8; i<length-1; i++,position--)
+      add += charToInt(a[i]) * position;
      
-     m11 = sum % 11;
-     if(m11!=0) m11 = 11 - m11;
+     mod11 = add % 11;
+     if(mod11!=0) mod11 = 11 - mod11;
      
-     return m11;
+     return mod11;
    }
    
-   checksum = char2int(a[len-1]);
+   check_sum = charToInt(a[length-1]);
    
-   for(i=0,pos=8; i<len-1; i++,pos--)
-      sum += char2int(a[i]) * pos;
+   for(i=0,position=8; i<length-1; i++,position--)
+      add += charToInt(a[i]) * position;
      
-   m11 = sum % 11;
-   if(m11!=0) m11 = 11 - m11;
+   mod11 = add % 11;
+   if(mod11!=0) mod11 = 11 - mod11;
    
-   if(m11 == checksum) 
+   if(mod11 == check_sum) 
     return VERIFIED;
    else
     return NOTVERIFIED;
@@ -614,43 +560,43 @@ int issn(char a[])
 /*****************************************************************************/
 
 /*****************************************************************************
-                    IMEI (International Mobile Equipment Identity)
+                    imei_number (International Mobile Equipment Identity)
     15 digit number
     
 *****************************************************************************/
    
-int imei(char a[])
+int imei_number(char a[])
 {
-   int i,len,mul,sum;
+   int i,length,product,add;
    int chksum;
-   int m10;
+   int mod10;
 
-   len = strlen(a);
+   length = strlen(a);
    
-   if(len!=15)
+   if(length!=15)
     return INVALID;
     
-   chksum = char2int(a[len-1]); //Last element should be the checksum
+   chksum = charToInt(a[length-1]); //Last element should be the check_sum
  
 
-   mul = 2; sum=0;
+   product = 2; add=0;
    
-   for(i=len-2;i>=0;i--)
+   for(i=length-2;i>=0;i--)
    { 
-    if( (char2int(a[i])*mul) >= 10 )
-     sum +=  ((char2int(a[i])*mul ) / 10) +((char2int(a[i])*mul ) % 10 );
+    if( (charToInt(a[i])*product) >= 10 )
+     add +=  ((charToInt(a[i])*product ) / 10) +((charToInt(a[i])*product ) % 10 );
     
     else
-     sum += char2int(a[i])*mul;
+     add += charToInt(a[i])*product;
    
-    if(mul==2) mul=1;
-    else mul=2;
+    if(product==2) product=1;
+    else product=2;
    }
  
-   m10 = sum%10;
+   mod10 = add%10;
  
-   if(m10) m10 = 10 - m10;
-   if(m10 == chksum) return VERIFIED;
+   if(mod10) mod10 = 10 - mod10;
+   if(mod10 == chksum) return VERIFIED;
    else 
     return NOTVERIFIED;
 }

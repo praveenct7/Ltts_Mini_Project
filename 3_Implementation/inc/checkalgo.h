@@ -14,44 +14,40 @@
           
 
 
-int  char2int(char ch);              //converts character to integer
-char int2char(int ch);               //converts integer to character
+int  charToInt(char ch);              //converts character to integer
+char intToChar(int ch);               //converts integer to character
 
-int  checkArg(char s[], int noOfArg, char *argstr[]);//checks the argument
+int  check_arguments(char s[], int noOfArg, char *argstr[]);//checks the argument
 
-int  extractNum(char str[], char num[]);             //extracts the number
-void extractOption(char str[], char opt[], int pos); //extracts the option
+int  extract_number(char str[], char num[]);             //extracts the number
+void extract_option(char str[], char opt[], int pos); //extracts the option
 
-void clearArr(char a[]);              //clears an array
-void completeNumber(char a[]);        //fills incomplete number
-
-
-int  ibm_mod10(char a[]);            //mod10 check
-int  ibm_mod10_checksum(char a[]);   //creates checksum
-void createNumMod10(char a[], char completenum[]); //generates a valid number
+void clear_array(char a[]);              //clears an array
+void complete_Number(char a[]);        //fills incomplete number
 
 
-int  uspsmo(char a[]);                //usps money order  
+int  modulus10(char a[]);            //mod10 check
+int  mod10Checksum(char a[]);   //creates checksum
+void create_number_mod10(char a[], char completenum[]); //generates a valid number
 
 
-int  upc_a(char a[]);                 //upc check
-int  ean(char a[]);                   //ean check
+int  us_postal(char a[]);                //usps money order  
 
+
+int  universal_product_code(char a[]);                 //upc check
 
 
 
-int  isbn_10(char a[]);               //isbn 10 digits
-int  isbn_13(char a[]);               //isbn 13 digits
+
+int  book_number_10(char a[]);               //isbn 10 digits
+int  book_number_13(char a[]);               //isbn 13 digits
 
 
-int  routing(char a[]);               //routing number check
+int  rout(char a[]);               //routing number check
 
-int  issn(char a[]);                  //issn check
+int  serial_number(char a[]);                  //issn check
 
-int  imei(char a[]);                  //imei check
-
-
-void version(void);                   //displays the version information
+int  imei_number(char a[]);                  //imei check
 void usage(void);                     //displays the usage information
 
 #endif
