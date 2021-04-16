@@ -9,5 +9,5 @@
 ## Low Level Design 
 
 --- TBD Structural and Behavioural Diagram
-![FeaturesLevelStructuralDiagram](https://github.com/praveenct7/Ltts_Mini_Project/blob/67539e76311f057b8c6e59b749c24330fd10f392/2_Architecture/Behavior%20Diagrams/system_design.png)
+![FeaturesLevelStructuralDiagram](https://github.com/praveenct7/Ltts_Mini_Project/blob/7c44d58f8b06ad126b0914d9a181070dc6759545/2_Architecture/system_design.png)
 ![FeaturesBehaviouralDiagram](Link to Pic)
