@@ -217,13 +217,13 @@ int mod10Checksum(char a[])
 int modulus10(char a[])
 {
    int i, length, product, add;
-   int chksum;
+   int csum;
    int mod10;
    
    
-   length = strlen(a); //length of the string passed
+   length = strlen(a); 
  
-   chksum = charToInt(a[length-1]); //Last element should be the check_sum
+   csum = charToInt(a[length-1]); 
  
 
    product = 2; add=0;
@@ -244,7 +244,7 @@ int modulus10(char a[])
  
    if(mod10) mod10 = 10 - mod10;
    
-   if(mod10 == chksum)
+   if(mod10 == csum)
     return VERIFIED;
        
    else
@@ -568,7 +568,7 @@ int serial_number(char a[])
 int imei_number(char a[])
 {
    int i,length,product,add;
-   int chksum;
+   int csum;
    int mod10;
 
    length = strlen(a);
@@ -576,7 +576,7 @@ int imei_number(char a[])
    if(length!=15)
     return INVALID;
     
-   chksum = charToInt(a[length-1]); //Last element should be the check_sum
+   csum = charToInt(a[length-1]); //Last element should be the check_sum
  
 
    product = 2; add=0;
@@ -596,7 +596,7 @@ int imei_number(char a[])
    mod10 = add%10;
  
    if(mod10) mod10 = 10 - mod10;
-   if(mod10 == chksum) return VERIFIED;
+   if(mod10 == csum) return VERIFIED;
    else 
     return NOTVERIFIED;
 }
