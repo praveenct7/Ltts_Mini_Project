@@ -1,5 +1,5 @@
 /*
- *  checkalgo.c - functions for CheckAlgo
+ *  checkalgo.c - functions for algorithms to check the number is valid or invalid
 */
  
 
@@ -145,7 +145,6 @@ void usage(void)
   printf("-isbn10       Checks an ISBN (10 digits).\n");
   printf("-isbn13       Checks an ISBN (13 digits).\n");
   printf("-upc          Checks a UPC number (12 digits).\n");
-  printf("-ean          Checks an EAN number (13 digits).\n");
   printf("-createMod10  Generates a valid number verified with mod10 algorithm.\n");
   printf("-i            Reads the input from a file. Input file in Number,Type format.\n");
   printf("              Ex: 5487934592459432,bankcrd. One entry per line.\n");
@@ -160,7 +159,6 @@ void usage(void)
   printf("imei_number    - imei_number (15 digits)\n");
   printf("serial_number    - serial_number (8 digits)\n");
   printf("upc     - UPC (12 digits)\n");
-  printf("ean     - EAN (13 digits)\n");
   printf("us_postal  - USPS Money order\n");
   printf("isbn10  - ISBN (10 digits)\n");
   printf("isbn13  - ISBN (13 digits)\n");
@@ -180,7 +178,7 @@ void usage(void)
                             Mod10 algorithm - functions
 ******************************************************************************/
 
-//Generates the check_sum
+//Generates the check sum
 int mod10Checksum(char a[])
 {
     int length, product, i, add, mod10;
@@ -275,8 +273,7 @@ void create_number_mod10(char a[], char completenum[])
         strcpy(completenum,a);
         complete_number(completenum);
         check_sum = mod10Checksum(completenum);
-        orgcheck = charToInt(completenum[length-1]);
-       // printf("\n%s  %d  %d",completenum,check_sum,orgcheck);        
+        orgcheck = charToInt(completenum[length-1]);        
       }while(orgcheck != check_sum);
     }
  }
